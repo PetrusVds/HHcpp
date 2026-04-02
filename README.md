@@ -9,6 +9,7 @@ This repository contains a C++ implementation of the Hodgkin-Huxley model for a 
 - `Integrators`: A set of classes that implement different numerical integration schemes for solving the differential equations of the model. Currently, Forward Euler, Implicit Euler, and Exponential Euler methods are implemented.
 
 The diagram below provides a brief overview of the structure of the code and how the different components interact with each other. Additionally, it shows visually which classes are accessible from Python (green) and which are only available in C++ (orange).  
+
 ![Diagram](uml/HH-uml.png)
 
 ## Requirements
