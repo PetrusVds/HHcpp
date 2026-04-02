@@ -60,7 +60,7 @@ While a `main.cpp` file is included to run a basic, console-based simulation of 
 ## Usage in Python
 
 > [!Note] Python version
-> The package has only been tested with python 3.12, since this will later be used also for the `sbi` package. Please make sure to use python 3.12 when installing the package, otherwise you might run into issues.
+> The package has only been tested with python 3.12. Please make sure to use python 3.12 when installing the package, otherwise you might run into issues.
 
 The C++ code can be integrated into Python using pybind11. The file `python/bindings.cpp` contains the necessary code to create Python bindings for the Hodgkin-Huxley model. After cloning the project, you can install it into the Python environment using pip:
 
