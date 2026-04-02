@@ -1,0 +1,12 @@
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "HHcpp"
+description = "A C++ Hodgkin-Huxley neuronal simulator"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.scikit-build]
+cmake.build-type = "Release"

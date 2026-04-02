@@ -1,0 +1,55 @@
+image: gcc:latest
+
+cache:
+  key: ccache-shared
+  paths:
+    - .ccache/
+
+stages:
+  - test
+  - deploy
+
+test_and_coverage:
+  stage: test
+  before_script:
+    - apt-get update && apt-get install -y cmake gcovr libboost-dev python3-dev ccache
+    - export CCACHE_DIR=$CI_PROJECT_DIR/.ccache
+  script:
+    - cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+    - cmake --build build
+
+    - ccache --show-stats
+
+    - cd build
+    - ctest --output-on-failure --output-junit report.xml
+
+    - gcovr --xml-pretty --exclude-unreachable-branches --exclude-throw-branches --print-summary --xml coverage.xml --html-details coverage.html --root .. -f '../include/' -f '../src/' -e '../src/main\.cpp' -e '.*build/.*'
+
+  coverage: /^\s*lines:\s*\d+.\d+\%/
+
+  artifacts:
+    when: always
+    paths:
+      - build/coverage*.html
+      - build/coverage*.css
+    reports:
+      junit: build/report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: build/coverage.xml
+
+# for the GitLab Pages coverage report
+pages:
+  stage: .post
+  dependencies:
+    - test_and_coverage
+  script:
+    - mkdir public
+    - mv build/coverage.html public/index.html
+    - mv build/coverage*.html public/ || true
+    - mv build/coverage*.css public/ || true
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
