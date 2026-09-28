@@ -34,7 +34,7 @@ To build and run the code, you can use CMake. Here are the steps:
 
 1. Clone the repository:
    ```bash
-   git clone git@gitlab.kuleuven.be:math-eng/h0t46a/2026/team_02/hodgkin-huxley.git
+   git clone git@github.com:PetrusVds/HHcpp.git
    cd hodgkin-huxley
    ```
 2. Create a build directory and navigate into it:
@@ -71,7 +71,7 @@ pip install .
 However, cloning is not necessary since we have also set up a `pyproject.toml` file, which allows you to directly install the package from the git repository using pip:
 
 ```bash
-pip install "git+ssh://git@gitlab.kuleuven.be/math-eng/h0t46a/2026/team_02/hodgkin-huxley.git"
+pip install "git+ssh://git@github.com/PetrusVds/HHcpp.git"
 ```
 
 The current python environment will now have access to a package `HHcpp`, which exposes the C++ implementation of the Hodgkin-Huxley model.
